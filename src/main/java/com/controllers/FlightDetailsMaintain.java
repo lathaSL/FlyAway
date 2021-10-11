@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dao.FlightDetailsDao;
 import com.dao.FlightDetailsDaoImpl;
+import com.dto.Flight;
 import com.dto.FlightDetails;
+import com.dto.Location;
 
 /**
  * Servlet implementation class FlightDetailsMaintain
@@ -33,9 +35,19 @@ public class FlightDetailsMaintain extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String FlgtCode=request.getParameter("flightCode");
-		String depLocCode=request.getParameter("depLocCode");
-		String arrLocCode=request.getParameter("arrLocCode");
+		String flgtId=request.getParameter("flightId");
+		Flight flight=new Flight();
+		flight=flight.getFlight(Integer.parseInt(flgtId));
+				
+		String depLocId=request.getParameter("depLocId");
+		Location deploc=new Location();
+		deploc=deploc.getLocation(Integer.parseInt(depLocId));
+		
+		String arrLocId=request.getParameter("arrLocId");
+		Location arrloc=new Location();
+			arrloc=arrloc.getLocation(Integer.parseInt(arrLocId));
+
+		
 		Date depTime=null;
 		try {
 			depTime = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").parse(request.getParameter("depTime"));
@@ -53,18 +65,23 @@ public class FlightDetailsMaintain extends HttpServlet {
 		double price=Double.parseDouble(request.getParameter("price"));
 		
 		
-		FlightDetails flight=new FlightDetails(FlgtCode,depLocCode,arrLocCode,depTime, arrTime,price);
+		
+		
+		FlightDetails flightdtls=new FlightDetails(flight,deploc,arrloc,depTime, arrTime,price);
 		FlightDetailsDao flightutil=new FlightDetailsDaoImpl();
 		if (request.getParameter("type").equals("Add")) {
-			int flightId=flightutil.AddFlightDetails(flight);
+			int flightId=flightutil.AddFlightDetails(flightdtls);
+			String message;
 			if (flightId >0) {
-				
-				response.sendRedirect("flightdetails.jsp");
+				message="Location added Successfully!";
+				request.setAttribute("message", message);
+				request.getRequestDispatcher("/addflightdtls.jsp").forward(request, response);
+
 			}
 			else {
-				
-				response.sendRedirect("err.jsp");
-			}
+				message="Error occurred while adding Flight Details!!";
+				request.setAttribute("message", message);
+				request.getRequestDispatcher("/err.jsp").forward(request, response);}
 		}
 		
 	}

@@ -11,10 +11,11 @@
 <property name="show_sql">true</property>
 <property name="hbm2ddl.auto">update</property>
 
-<mapping class="com.dto.User" />
+<mapping class="com.dto.UserAdmin" />
 <mapping class="com.dto.Location" />
 <mapping class="com.dto.Flight" />
 <mapping class="com.dto.FlightDetails" />
+<mapping class="com.dto.UserDetails" />
 
 
 

@@ -3,12 +3,21 @@ package com.dto;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Where;
+
+import javax.persistence.ForeignKey;
+
 
 import com.dao.FlightDetailsDao;
 import com.dao.FlightDetailsDaoImpl;
@@ -21,14 +30,22 @@ public class FlightDetails {
 	@Column(name="flightdtlsid")
 	private int flightDtlsId;
 	
-	@Column(name="flightcode")
-	private String flightCode;
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="flightid")
+	@Where(clause= "flightid=flightid")
+	private Flight flight;
 	
-	@Column(name="deploccode")
-	private String depLocCode;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="deplocid", foreignKey=@ForeignKey(name="deploc_id_foreign"))
+	@Where(clause= "deplocid=locid")
+	private Location deploc;
 	
-	@Column(name="arrloccode")
-	private String arrLocCode;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="arrlocid", foreignKey=@ForeignKey(name="arrloc_id_foreign"))
+	@Where(clause= "arrlocid=locid")
+
+	
+	private Location arrloc;
 	
 	@Column(name="deptime")
 	private Date depTime;
@@ -42,63 +59,98 @@ public class FlightDetails {
 	public FlightDetails() {
 		
 	}
-	public FlightDetails(String flightCode, String depLocCode, String sttLocCode, Date depTime, Date arrTime,
-			double price) {
-		super();
-		this.flightCode = flightCode;
-		this.depLocCode = depLocCode;
-		this.arrLocCode = sttLocCode;
-		this.depTime = depTime;
-		this.arrTime = arrTime;
-		this.price = price;
-	}
-
 	
-	public String getFlightCode() {
-		return flightCode;
+	
+	public int getFlightDtlsId() {
+		return flightDtlsId;
 	}
 
-	public void setFlightCode(String flightCode) {
-		this.flightCode = flightCode;
+
+	public void setFlightDtlsId(int flightDtlsId) {
+		this.flightDtlsId = flightDtlsId;
 	}
 
-	public String getDepLocCode() {
-		return depLocCode;
+
+	public Flight getFlight() {
+		return flight;
 	}
 
-	public void setDepLocCode(String depLocCode) {
-		this.depLocCode = depLocCode;
+
+	public void setFlight(Flight flight) {
+		this.flight = flight;
 	}
 
-	public String getSttLocCode() {
-		return arrLocCode;
+
+	public Location getDeploc() {
+		return deploc;
 	}
 
-	public void setSttLocCode(String sttLocCode) {
-		this.arrLocCode = sttLocCode;
+
+	public void setDeploc(Location deploc) {
+		this.deploc = deploc;
 	}
+
+
+	public Location getArrloc() {
+		return arrloc;
+	}
+
+
+	public void setArrloc(Location arrloc) {
+		this.arrloc = arrloc;
+	}
+
 
 	public Date getDepTime() {
 		return depTime;
 	}
 
+
 	public void setDepTime(Date depTime) {
 		this.depTime = depTime;
 	}
+
 
 	public Date getArrTime() {
 		return arrTime;
 	}
 
+
 	public void setArrTime(Date arrTime) {
 		this.arrTime = arrTime;
 	}
+
 
 	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(long price) {
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+
+	public FlightDetails(int flightDtlsId, Flight flight, Location deploc, Location arrloc, Date depTime, Date arrTime,
+			double price) {
+		super();
+		this.flightDtlsId = flightDtlsId;
+		this.flight = flight;
+		this.deploc = deploc;
+		this.arrloc = arrloc;
+		this.depTime = depTime;
+		this.arrTime = arrTime;
+		this.price = price;
+	}
+
+	public FlightDetails(Flight flight, Location deploc, Location arrloc, Date depTime, Date arrTime,
+			double price) {
+		super();
+		this.flight = flight;
+		this.deploc = deploc;
+		this.arrloc = arrloc;
+		this.depTime = depTime;
+		this.arrTime = arrTime;
 		this.price = price;
 	}
 
@@ -110,8 +162,21 @@ public class FlightDetails {
 		FlightDetailsDao flightDtls=new FlightDetailsDaoImpl();
 			return	flightDtls.getFlightCodesList();
 	}
+	
+	public  List<FlightDetails>  getFlightDetailsList(String flightDtlsId) {
+		FlightDetailsDao flightDtls=new FlightDetailsDaoImpl();
+			return	flightDtls.getFlightDetailsList(flightDtlsId);
+	}
 	public  List<Location>  getLocCodesList() {
 		FlightDetailsDao flightDtls=new FlightDetailsDaoImpl();
 			return	flightDtls.getLocCodesList();
 	}
+	
+	public  List<FlightDetails>  getFlightDetailsList (String flgtId,String depLocId, String arrLocId,String depDate){
+		FlightDetailsDao flightDtls=new FlightDetailsDaoImpl();
+		return	flightDtls.getFlightDetailsList(flgtId, depLocId,  arrLocId, depDate);
+	
+		
+	}
+	
 }

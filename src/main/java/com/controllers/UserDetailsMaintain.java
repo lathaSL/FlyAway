@@ -55,9 +55,11 @@ public class UserDetailsMaintain extends HttpServlet {
 			response.sendRedirect("bookticket.jsp");
 		}
 		else {
-			
-			response.sendRedirect("err.jsp");
-		}	}
+			String message="Error occurred while adding user details!!";
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("/err.jsp").forward(request, response);
+		}	
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

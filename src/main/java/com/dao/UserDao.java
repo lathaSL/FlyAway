@@ -1,11 +1,11 @@
 package com.dao;
 
-import com.dto.User;
+import com.dto.UserAdmin;
 
 public interface UserDao {
-	public boolean validateUser(User user) ;
-	public int insertUser(User user);
-	public boolean changePwd(User user, String newPwd) ;
+	public boolean validateUser(UserAdmin user) ;
+	public int insertUser(UserAdmin user);
+	public boolean changePwd(UserAdmin user, String newPwd) ;
 
 
 }

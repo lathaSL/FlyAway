@@ -48,12 +48,66 @@ public FlightDaoImpl() {
 			Transaction txn = session.beginTransaction();
 			String hql = "FROM Flight flight";
 			TypedQuery<Flight> query = session.createQuery(hql);
-		
-			 return query.getResultList();
+			List<Flight> resultSet= query.getResultList();
+			 session.close();
+			 return resultSet;
+				}
+		catch(Exception e){
+			
+			return null;
+			
+		}
+	}
+	public String getFlightName(int flightId) {
+		try {		
+			Session session  = factory.openSession();
+			Transaction txn = session.beginTransaction();
+			String hql = "Select flight.flightName FROM Flight flight where flightId=:fltId";
+			TypedQuery<String> query = session.createQuery(hql);
+		query.setParameter("fltId", flightId);
+			 String result= query.getSingleResult();
+			 session.close();
+			 return result;
+			
 			}
 		catch(Exception e){
 			return null;
 		}
+			
+	}
+	
+	public String getFlightCode(int flightId) {
+		try {		
+			Session session  = factory.openSession();
+			Transaction txn = session.beginTransaction();
+			String hql = "Select flight.flightCode FROM Flight flight where flightId=:fltId";
+			TypedQuery<String> query = session.createQuery(hql);
+		query.setParameter("fltId", flightId);
+			 String result= query.getSingleResult();
+			 session.close();
+			 return result;
+			
+			}
+		catch(Exception e){
+			return null;
+		}
+	}
 		
+		public Flight getFlight(int flightId) {
+			try {		
+				Session session  = factory.openSession();
+				Transaction txn = session.beginTransaction();
+				String hql = "FROM Flight flight where flightId=:fltId";
+				TypedQuery<Flight> query = session.createQuery(hql);
+			query.setParameter("fltId", flightId);
+				Flight result= query.getSingleResult();
+				 session.close();
+				 return result;
+				
+				}
+			catch(Exception e){
+				return null;
+			}
+			
 	}
 }

@@ -33,6 +33,18 @@ public class Location {
 		this.locName = locName;
 	}
 
+	public Location(int locId,String locCode, String locName) {
+		super();
+		this.locId = locId;
+		this.locCode = locCode;
+		this.locName = locName;
+	}
+	public int getLocId() {
+		return locId;
+	}
+	public void setLocId(int locId) {
+		this.locId = locId;
+	}
 	public String getLocCode() {
 		return locCode;
 	}
@@ -52,5 +64,15 @@ public class Location {
 		LocationDao loc=new LocationDaoImpl();
 			return	loc.getLocList();
 	}
+	public String getLocName(int locId) {
+		LocationDao loc=new LocationDaoImpl();
+		return loc.getLocName(locId);
+			
+	}
 
+	public Location getLocation(int locId) {
+		LocationDao loc=new LocationDaoImpl();
+		return loc.getLocation(locId);
+			
+	}
 }

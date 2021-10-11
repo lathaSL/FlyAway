@@ -53,13 +53,4 @@ public class AdminMaintainServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	private void airMaintain() {
-		
-	}
-	private void locMaintain() {
-		
-	}
-	private void flightMaintain() {
-			
-	}
 }

@@ -4,11 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>FlyAway Home Page</title>
+<title>FlyAway Admin Page</title>
 </head>
-<body>
+<body style="background-color:#FAF0E6;">
+<jsp:include page="adminhead.jsp" />
+
+<H2>Add User:</H2>
 	<form action="/FlyAway/insertadmin" method="post">
-		<table>
+		<table width="45%">
 			<tr>
 				<td>User Name: </td><td><input type="text" name="uname"/></td>
 			</tr>
@@ -24,7 +27,7 @@
 			</tr>
 			
 			<tr>
-				<td colspan="2"><input type="submit" Value="Insert"/></td>
+				<td colspan="2"><br/><input type="submit" Value="Insert"/></td>
 			</tr>
 		</table>	
 	</form>

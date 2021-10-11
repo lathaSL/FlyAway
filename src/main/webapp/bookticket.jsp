@@ -12,15 +12,13 @@
   
 
 </head>
-<body>
+<body style="background-image: url('bg2.jpg');">
+<jsp:include page="userhead.jsp" />
 
-<H1> Welcome to FlyAway Portal!</H1>
+
+<h2>Your Airline booking details:</h2>
 	<form action="/FlyAway/payment.jsp" method="post">
-		<table>
-			<tr>
-				<td>Search Results:
-			</tr>
-		
+		<table style="width:80%">		
 			<tr>
 				<% 
 				String flightdtlsid=session.getAttribute("flightdtlsid").toString(); %>
@@ -32,7 +30,7 @@
 				<% pageContext.setAttribute("flightdtlsid",session.getAttribute("flightdtlsid").toString()); %>
 				
 				
-				<td>flight Name</td><td>FROM</td><td>TO</td><td>DEPARTURE</td><td>ARRIVAL</td><td>Price</td>
+				<td><b>Airline</b></td><td><b>FROM</b></td><td><b>TO</b></td><td><b>DEPARTURE</b></td><td><b>ARRIVAL</b></td><td><b>Price</b></td>
 			</tr>
 			
 				
@@ -50,7 +48,7 @@
 					</c:forEach>
 				
 			<tr>
-				<td colspan="2"><input type="submit" Value="Confirm Booking"/></td>
+				<td colspan="2"><br/><br/><input type="submit" Value="Confirm Booking"/></td>
 			</tr>
 		</table>	
 	</form>

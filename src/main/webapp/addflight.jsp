@@ -6,20 +6,22 @@
 <meta charset="ISO-8859-1">
 <title>FlyAway Home Page</title>
 </head>
-<body>
+<body style="background-color:#FAF0E6;">
+<jsp:include page="adminhead.jsp" />
+<H2>Add Flight:</H2>
 	<form action="/FlyAway/flightmaintain" method="post">
 		<table>
 			<tr>
-				<td>Flight Code</td><td><input type="text" name="flightCode"/></td>
+				<td><b>Flight Code</b></td><td><input type="text" name="flightCode"/></td>
 			</tr>
 			<tr>
-				<td>Flight Name</td><td><input type="text" name="flightName"/></td>
+				<td><b>Flight Name</b></td><td><input type="text" name="flightName"/></td>
 			</tr>
 			
-			
+			<tr><td><br/></td></tr>
 			<tr>
-				<td colspan="2"><input type="submit" Value="Add" name="type"/></td>
-				<td colspan="2"><input type="Reset" Value="Reset"/></td>
+				<td><input type="submit" Value="Add" name="type"/></td>
+				<td><input type="Reset" Value="Reset"/></td>
 			</tr>
 		</table>	
 	</form>

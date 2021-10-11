@@ -12,15 +12,17 @@
   
 
 </head>
-<body>
+<body style="background-image: url('bg2.jpg');">
 
-<H1> Welcome to FlyAway Portal!</H1>
-	<form action="/FlyAway/confirm.jsp" method="post">
-		<table>
-			<tr>
-				<td>Thanks for Booking <%= session.getAttribute("fname").toString() %>, Your ticket details below:</td>
-			</tr>
-		<% 
+
+<jsp:include page="userhead.jsp" />
+<br/>
+<p>
+Thanks for Booking <%= session.getAttribute("fname").toString() %>, Your ticket details below:</p><br/>
+		<table style="width:60%; border: solid; padding:20px; align:center;">		
+		
+				<tr>
+				<% 
 				String flightdtlsid=session.getAttribute("flightdtlsid").toString(); %>
 				
 				
@@ -32,20 +34,17 @@
 				
 				<% pageContext.setAttribute("count",session.getAttribute("count").toString()); %>
 				
-				<td>flight Name</td><td>FROM</td><td>TO</td><td>DEPARTURE</td><td>ARRIVAL</td><td>Price</td><td>No. of passengers</td>
-			</tr>
-			
 				
 					<c:forEach items="${flgtBean.getFlightDetailsList(flightdtlsid)}" var="item">
-					<tr>
-						
-						<td>${item.getFlight().getFlightName()}</td>
-						<td>${item.getDeploc().getLocName()}</td>
-						<td>${item.getArrloc().getLocName()}</td>
-						<td>${item.getDepTime()}</td>
-						<td>${item.getArrTime()}</td>
-						<td>${item.getPrice()}</td>
-						<td>${count}</td>
+					<tr style="padding:10;">
+						<td><b>Name:</b></td><td><%= session.getAttribute("fname").toString() %></td></tr>
+						<tr><td><b>Airline: </b></td><td>${item.getFlight().getFlightName()}</td></tr>
+						<tr><td><b>Source:</b></td><td>${item.getDeploc().getLocName()}</td></tr>
+						<tr><td><b>Destination:</b></td><td>${item.getArrloc().getLocName()}</td>
+						</tr><tr><td><b>Departure:</b></td><td>${item.getDepTime()}</td>
+						</tr><tr><td><b>Arrival:</b></td><td>${item.getArrTime()}</td>
+						</tr><tr><td><b>Cost:</b></td><td>Rs. ${item.getPrice()}</td>
+						</tr><tr><td><b>No. of Passengers:</b></td><td>${count}</td>
 						
 						</tr>
 					</c:forEach>
@@ -53,10 +52,11 @@
 			<td>
 			
 				</tr>
+				
 			
 		</table>	
-	</form>
-	
+		<br/>
+<p>Want to book another ticket? <a href="/FlyAway/home.jsp">Search for Flights</a>.
 
 </body>
 </html>

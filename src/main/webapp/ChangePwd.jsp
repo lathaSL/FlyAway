@@ -6,12 +6,11 @@
 <meta charset="ISO-8859-1">
 <title>Admin Page</title>
 </head>
-<body>
+<body style="background-color:#FAF0E6;">
+<H1 align="center"> FlyAway Admin Page</H1>
+<p align="left"> <a href="/FlyAway/admin.jsp">Home</a></p>
 	<form action="/FlyAway/changepwd" method="post">
-		<table>
-			<tr>
-				<td>User Name: </td><td><input type="text" name="uname"/></td>
-			</tr>
+		<table>			
 			<tr>
 				<td>Enter Current Password: </td><td><input type="password" name="pwd"/></td>
 			</tr>
@@ -21,8 +20,11 @@
 			<tr>
 				<td>Re-enter New Password: </td><td><input type="password" name="repeatpwd"/></td>
 			</tr>
+			<tr><td><br/></td></tr>
 			<tr>
-				<td colspan="2"><input type="submit" Value="Change Password"/></td>
+				<td><input type="submit" Value="Change Password"/></td>
+				<td><input type="Reset" Value="Reset"/></td>
+				
 			</tr>
 		</table>	
 	</form>

@@ -32,7 +32,19 @@ public class Flight {
 		this.flightCode = flightCode;
 		this.flightName = flightName;
 	}
+	public Flight(int flightId, String flightCode, String flightName) {
+		super();
+		this.flightId = flightId;
+		this.flightCode = flightCode;
+		this.flightName = flightName;
+	}
 
+	public int getFlightId() {
+		return flightId;
+	}
+	public void setFlightId(int flightId) {
+		this.flightId = flightId;
+	}
 	public String getFlightCode() {
 		return flightCode;
 	}
@@ -52,5 +64,19 @@ public class Flight {
 		FlightDao flight=new FlightDaoImpl();
 			return	flight.getFlightList();
 	}
+	
+	public Flight getFlight(int flightId) {
+		FlightDao flight=new FlightDaoImpl();
+		return	flight.getFlight(flightId);
+}
+	public  String getFlightName(int flightId) {
+		FlightDao flight=new FlightDaoImpl();
+			return	flight.getFlightName(flightId);
+	}
+	public  String getFlightCode(int flightId) {
+		FlightDao flight=new FlightDaoImpl();
+			return	flight.getFlightCode(flightId);
+	}
+	
 
 }

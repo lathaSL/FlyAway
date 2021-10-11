@@ -12,7 +12,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import com.dto.User;
+import com.dto.UserAdmin;
 
 public class UserDaoImpl implements UserDao {
 	
@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 
-	public boolean validateUser(User user) {
+	public boolean validateUser(UserAdmin user) {
 		// TODO Auto-generated method stub
 		
 		String uName=user.getUserName();
@@ -34,8 +34,8 @@ public class UserDaoImpl implements UserDao {
 		try {		
 		Session session  = factory.openSession();
 		Transaction txn = session.beginTransaction();
-		String hql = "FROM User user where user.userName= :uName and user.pwd=:pwd";
-		TypedQuery<User> query = session.createQuery(hql);
+		String hql = "FROM UserAdmin user where user.userName= :uName and user.pwd=:pwd";
+		TypedQuery<UserAdmin> query = session.createQuery(hql);
 		query.setParameter("uName", uName);
 		query.setParameter("pwd", pwd);
 		 query.getSingleResult();
@@ -50,7 +50,7 @@ public class UserDaoImpl implements UserDao {
 		}
 	@Override
 
-	public int insertUser(User user) {
+	public int insertUser(UserAdmin user) {
 		// TODO Auto-generated method stub
 		
 		Integer userId = null;
@@ -63,7 +63,7 @@ public class UserDaoImpl implements UserDao {
 		return userId;
 		}
 	@Override
-	public boolean changePwd(User user, String newPwd) {
+	public boolean changePwd(UserAdmin user, String newPwd) {
 		// TODO Auto-generated method stub
 		
 		String uName=user.getUserName();
@@ -72,7 +72,7 @@ public class UserDaoImpl implements UserDao {
 		Session session  = factory.openSession();
 		Transaction txn = session.beginTransaction();
 //		String hql = "SELECT user.userid FROM User user where user.userName=:uName and user.pwd=:pwd";
-		String hql = "update User user set user.pwd=:newPwd where user.userName=:uName and user.pwd=:pwd";
+		String hql = "update UserAdmin user set user.pwd=:newPwd where user.userName=:uName and user.pwd=:pwd";
 		TypedQuery<String> query = session.createQuery(hql);
 		query.setParameter("uName", uName);
 		query.setParameter("pwd", pwd);

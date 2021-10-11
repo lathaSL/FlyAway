@@ -6,23 +6,25 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>FlyAway Book Ticket Page</title>
+<title>Payment Page</title>
 
   
 
 </head>
-<body>
+<body style="background-color:powderblue;">
 
-<H1> Welcome to Payment Portal!</H1>
+<H1 align="center"> Payment Portal</H1>
+<p align="right"> <a href="/FlyAway/home.jsp">Home</a></p>
+
 	<form action="/FlyAway/confirm.jsp" method="post">
-		<table>
+	<table style="width:85%">
 			
 		
 			<tr>
 			<td>
-			Hi <%= session.getAttribute("fname").toString() %>, <br/>
+			Hi <%= session.getAttribute("fname").toString() %>, <br/><br/>
 			
-			Please pay an amount of Rs.<%= request.getParameter("price") %>
+			               Please pay an amount of <b>Rs. <%= request.getParameter("price") %></b><br/><br/></td>
 				</tr>
 			<tr>
 				<td colspan="2"><input type="submit" Value="PAY"/></td>

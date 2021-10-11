@@ -1,6 +1,8 @@
 package com.controllers;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,13 +35,16 @@ public class LocationMaintain extends HttpServlet {
 		LocationDao locutil=new LocationDaoImpl();
 		if (request.getParameter("type").equals("Add")) {
 			int locId=locutil.AddLoc(loc);
+			String message;
 			if (locId >0) {
-				
-				response.sendRedirect("locations.jsp");
-			}
+				message="Location added Successfully!";
+				request.setAttribute("message", message);
+				request.getRequestDispatcher("/locations.jsp").forward(request, response);
+}
 			else {
-				
-				response.sendRedirect("err.jsp");
+				message="Error occurred while adding location!!";
+				request.setAttribute("message", message);
+				request.getRequestDispatcher("/err.jsp").forward(request, response);
 			}
 		}
 		

@@ -19,15 +19,13 @@
 
 
 </head>
-<body>
-
-<H1> Welcome to FlyAway Portal!</H1>
+<body style="background-image: url('bg2.jpg');">
+<jsp:include page="userhead.jsp" />
+ <H2>Available Airline(s) Details:</H2>
+<p>Select and book your tickets.</p>
 	<form action="/FlyAway/register.jsp" method="post">
-		<table>
-			<tr>
-				<td>Search Results:
-			</tr>
-		
+		<table style="width:80%">
+			
 			<tr>
 				<% 
 				String FlgtId=request.getParameter("flightId");%>
@@ -42,7 +40,7 @@
 				<% pageContext.setAttribute("datepicker", request.getParameter("datepicker")); %>
 				
 				
-				<td/><td>flight Name</td><td>FROM</td><td>TO</td><td>DEPARTURE</td><td>ARRIVAL</td><td>Price</td>
+				<td><i>Select</i></td><td><b>Airline</b></td><td><b>FROM</b></td><td><b>TO</b></td><td><b>DEPARTURE</b></td><td><b>ARRIVAL</b></td><td><b>Price</b></td>
 			</tr>
 			
 				
@@ -60,7 +58,7 @@
 					</c:forEach>
 				
 			<tr>
-				<td colspan="2"><input type="submit" Value="Book Ticket"/></td>
+				<td colspan="2"><br/<br/><input type="submit" Value="Book Ticket"/></td>
 			</tr>
 		</table>	
 	</form>

@@ -9,9 +9,10 @@
 <title>FlyAway Registration Page</title>
 
 </head>
-<body>
+<body style="background-image: url('bg2.jpg');">
+<jsp:include page="userhead.jsp" />
 
-<H1> Welcome to FlyAway Portal!</H1>
+
 <% 
 				String flightdtlsid=request.getParameter("flightdtlsid");
       			session.setAttribute("flightdtlsid", flightdtlsid);
@@ -19,7 +20,7 @@
 				<form action="/FlyAway/userdetails" method="post">
 		<table>
 			<tr>
-				<td>Please Fill your details:</td>
+				<td><b>Please Fill your details:</b><br/><br/></td>
 				
       			
 			</tr>
@@ -49,10 +50,10 @@
 			</tr>
 			
 			<tr>
-				<td>No. of passengers traveling with you: </td><td><input type="text" name="count"/></td>
+				<td>No. of passengers: </td><td><input type="text" name="count"/></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" name="adduserdetail" Value="Register"/></td>
+				<td colspan="2"><br/><br/><input type="submit" name="adduserdetail" Value="Register"/></td>
 			</tr>
 		</table>	
 	</form>

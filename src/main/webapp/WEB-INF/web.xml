@@ -1,7 +1,95 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
-<web-app>
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <description></description>
+    <display-name>LoginValidateServlet</display-name>
+    <servlet-name>LoginValidateServlet</servlet-name>
+    <servlet-class>com.controllers.LoginValidateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginValidateServlet</servlet-name>
+    <url-pattern>/loginvalidate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminMaintainServlet</display-name>
+    <servlet-name>AdminMaintainServlet</servlet-name>
+    <servlet-class>com.controllers.AdminMaintainServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminMaintainServlet</servlet-name>
+    <url-pattern>/adminmaintain</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ChangePwd</display-name>
+    <servlet-name>ChangePwd</servlet-name>
+    <servlet-class>com.controllers.ChangeAdminPwd</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangePwd</servlet-name>
+    <url-pattern>/changepwd</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InsertAdmin</display-name>
+    <servlet-name>InsertAdmin</servlet-name>
+    <servlet-class>com.controllers.InsertAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InsertAdmin</servlet-name>
+    <url-pattern>/insertadmin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LocationMaintain</display-name>
+    <servlet-name>LocationMaintain</servlet-name>
+    <servlet-class>com.controllers.LocationMaintain</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LocationMaintain</servlet-name>
+    <url-pattern>/locmaintain</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>FlightMaintain</display-name>
+    <servlet-name>FlightMaintain</servlet-name>
+    <servlet-class>com.controllers.FlightMaintain</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FlightMaintain</servlet-name>
+    <url-pattern>/flightmaintain</url-pattern>
+  </servlet-mapping> 
+   <servlet>
+    <description></description>
+    <display-name>FlightDetailsMaintain</display-name>
+    <servlet-name>FlightDetailsMaintain</servlet-name>
+    <servlet-class>com.controllers.FlightDetailsMaintain</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FlightDetailsMaintain</servlet-name>
+    <url-pattern>/flightdetails</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>UserDetailsMaintain</display-name>
+    <servlet-name>UserDetailsMaintain</servlet-name>
+    <servlet-class>com.controllers.UserDetailsMaintain</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserDetailsMaintain</servlet-name>
+    <url-pattern>/userdetails</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>logoutServlet</display-name>
+    <servlet-name>logoutServlet</servlet-name>
+    <servlet-class>com.controllers.logoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>logoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

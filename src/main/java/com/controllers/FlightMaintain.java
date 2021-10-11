@@ -33,14 +33,18 @@ public class FlightMaintain extends HttpServlet {
 		FlightDao flightutil=new FlightDaoImpl();
 		if (request.getParameter("type").equals("Add")) {
 			int flightId=flightutil.AddFlight(flight);
+			String message;
 			if (flightId >0) {
-				
-				response.sendRedirect("flights.jsp");
+				message="Location added Successfully!";
+				request.setAttribute("message", message);
+				request.getRequestDispatcher("/flights.jsp").forward(request, response);
+
 			}
 			else {
+				message="Error occurred while adding Flight Details!!";
+				request.setAttribute("message", message);
+				request.getRequestDispatcher("/err.jsp").forward(request, response);}
 				
-				response.sendRedirect("err.jsp");
-			}
 		}
 		
 	}

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import com.dao.UserDao;
 import com.dao.UserDaoImpl;
-import com.dto.User;
+import com.dto.UserAdmin;
 
 /**
  * Servlet implementation class InsertAdmin
@@ -34,17 +34,23 @@ public class InsertAdmin extends HttpServlet {
 		String pwd=request.getParameter("pwd");
 		String role=request.getParameter("role");
 
-		User user=new User (userName,pwd,role);
+		UserAdmin user=new UserAdmin (userName,pwd,role);
 		UserDao dao = new UserDaoImpl();
 		int userId=dao.insertUser(user) ;
+		String message;
 		if (userId >0) {
-			
-			response.sendRedirect("admin.jsp");
+			message="User added Successfully!";
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("/admin.jsp").forward(request, response);
+
 		}
 		else {
+			message="Error occurred while adding user!!";
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("/err.jsp").forward(request, response);
 			
-			response.sendRedirect("err.jsp");
-		}	}
+	}
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

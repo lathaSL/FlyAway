@@ -6,11 +6,19 @@
 <meta charset="ISO-8859-1">
 <title>Admin Page</title>
 </head>
-<body>
-Login as <%= session.getAttribute("adminname") %> <a href="/FlyAway/logout">Logout</a>
+<body style="width:90%; left-margin:5px; background-color:#FAF0E6;">
+
+
+<H1 align="center"> FlyAway Admin Page</H1>
+<p align="left"> <a href="/FlyAway/home.jsp">Home</a></p>
+<p align="right"> Logged in as<i> <%= session.getAttribute("adminname") %></i>.&nbsp;<a href="/FlyAway/logout">Logout</a></p>
+<p align="right"> <a href="/FlyAway/ChangePwd.jsp">Change Password</a></p>
+
+<p>${message}</p>
+<h2>Select your options:</h2>
 
 <form action="/FlyAway/adminmaintain" method="post">
-		<table>
+		<table style="align:center; width:20%">
 			<tr>
 				<td><select name="maintainType" id ="types">				
 					<option value="addAdmin">Add Admin</option>
@@ -20,17 +28,13 @@ Login as <%= session.getAttribute("adminname") %> <a href="/FlyAway/logout">Logo
 				</select>	
 				</td>
 			</tr>
-			
+			<tr><td><br/><br/></td></tr>
 			<tr>
 				<td colspan="2"><input type="submit" Value="Submit"/></td>
 				<td colspan="2"><input type="reset" Value="Reset"/></td>
 			</tr>
 			
-			<tr>
-				<td align="right">
-					<a href="/FlyAway/ChangePwd.jsp">Change Password</a>
-				</td>
-			</tr>
+			
 		</table>	
 	</form>
 

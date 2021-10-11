@@ -12,6 +12,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import com.dto.Flight;
 import com.dto.Location;
 
 public class LocationDaoImpl implements LocationDao {
@@ -48,9 +49,42 @@ public LocationDaoImpl() {
 			Transaction txn = session.beginTransaction();
 			String hql = "FROM Location loc";
 			TypedQuery<Location> query = session.createQuery(hql);
+			List<Location> resultSet= query.getResultList();
+			 session.close();
+			 return resultSet;
+				}
+		catch(Exception e){
+			return null;
+		}
 		
-			 return query.getResultList();
-			}
+	}
+	public String getLocName(int locId) {
+		try {		
+			Session session  = factory.openSession();
+			Transaction txn = session.beginTransaction();
+			String hql = "Select loc.locname FROM Location loc where loccode=:locId";
+			TypedQuery<String> query = session.createQuery(hql);
+			query.setParameter("locId", locId);
+			String result= query.getSingleResult();
+			 session.close();
+			 return result;
+				}
+		catch(Exception e){
+			return null;
+		}
+		
+	}
+	public Location getLocation(int locId) {
+		try {		
+			Session session  = factory.openSession();
+			Transaction txn = session.beginTransaction();
+			String hql = "FROM Location loc where locid=:locId";
+			TypedQuery<Location> query = session.createQuery(hql);
+			query.setParameter("locId", locId);
+			Location result= query.getSingleResult();
+			 session.close();
+			 return result;
+				}
 		catch(Exception e){
 			return null;
 		}

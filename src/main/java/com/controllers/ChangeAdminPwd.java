@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import com.dao.UserDao;
 import com.dao.UserDaoImpl;
-import com.dto.User;
+import com.dto.UserAdmin;
 
 /**
  * Servlet implementation class ChangeAdminPwd
@@ -30,23 +30,27 @@ public class ChangeAdminPwd extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String userName=request.getParameter("uname");
+		HttpSession session=request.getSession();
+
+		String userName=(String)session.getAttribute("adminname");
 		String pwd=request.getParameter("pwd");
 		String newPwd=request.getParameter("newpwd");
 
-		User user=new User (userName,pwd,"admin");
+		UserAdmin user=new UserAdmin (userName,pwd,"admin");
 		UserDao dao = new UserDaoImpl();
 		
 		boolean isValid=dao.changePwd(user,newPwd);
 		if (isValid) {
 			
-			HttpSession session=request.getSession();
 			session.setAttribute	("uname", user.getUserName());
-			response.sendRedirect("admin.jsp");
+			request.setAttribute("message", "Password Changed Successfully!!");
+			request.getRequestDispatcher("/admin.jsp").forward(request, response);
+//			response.sendRedirect("admin.jsp");
 		}
 		else {
-			
-			response.sendRedirect("err.jsp");
+			request.setAttribute("message", "Error in password reset!!");
+			request.getRequestDispatcher("/err.jsp").forward(request, response);
+//			response.sendRedirect("err.jsp");
 		}
 	}
 
